@@ -28,3 +28,8 @@ Requires GitHub integrations named `hughe-sldb`, `hughe-sldbman`, `hughe-sqpy`, 
 
 - The **container builds are normative**. If the container build and tests don't pass, it's broken — regardless of whether it works locally.
 - Local builds are useful for compiling, running, and debugging, but are not the source of truth.
+
+### Build discipline
+
+- **Always use Makefile targets** to build, test, and run things — never invoke `cargo`, `cc`, `cmake`, etc. directly.
+- This ensures every build step is reproducible and the human can repeat exactly what Shelley did.
