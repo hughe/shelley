@@ -24,6 +24,8 @@ Requires GitHub integrations named `hughe-sldb`, `hughe-sldbman`, `hughe-sqpy`, 
 - **sqpy** is independent — doesn't know about any of the others.
 - **leaser** and **failpoint** are independent — they don't know about each other or any upstream repos.
 
+Dependency direction is strictly one-way: we never modify a dependency repo to reference a dependent. Changes flow downstream only.
+
 ### SLDB build notes
 
 - The **container builds are normative**. If the container build and tests don't pass, it's broken — regardless of whether it works locally.
