@@ -33,3 +33,7 @@ Requires GitHub integrations named `hughe-sldb`, `hughe-sldbman`, `hughe-sqpy`, 
 
 - **Always use Makefile targets** to build, test, and run things — never invoke `cargo`, `cc`, `cmake`, etc. directly.
 - This ensures every build step is reproducible and the human can repeat exactly what Shelley did.
+
+### Git discipline
+
+- **Always show diffs before committing.** Run `git diff` (or `git diff --cached` for staged changes) and display the output before creating any commit.
