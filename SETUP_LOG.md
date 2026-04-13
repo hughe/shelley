@@ -23,3 +23,8 @@ Requires GitHub integrations named `hughe-sldb`, `hughe-sldbman`, `hughe-sqpy`, 
 - **sldb** knows about `leaser` and `failpoint`, but they don't know about `sldb`.
 - **sqpy** is independent — doesn't know about any of the others.
 - **leaser** and **failpoint** are independent — they don't know about each other or any upstream repos.
+
+### SLDB build notes
+
+- The **container builds are normative**. If the container build and tests don't pass, it's broken — regardless of whether it works locally.
+- Local builds are useful for compiling, running, and debugging, but are not the source of truth.
