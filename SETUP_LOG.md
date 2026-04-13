@@ -10,9 +10,12 @@ git clone https://hughe-sldbman.int.exe.xyz/hughe/sldbman.git
 git clone https://hughe-sqpy.int.exe.xyz/hughe/sqpy.git
 git clone https://hughe-leaser.int.exe.xyz/hughe/leaser.git
 git clone https://hughe-failpoint.int.exe.xyz/hughe/failpoint.git
+git clone https://hughe-shelley.int.exe.xyz/hughe/shelley.git
 ```
 
-Requires GitHub integrations named `hughe-sldb`, `hughe-sldbman`, `hughe-sqpy`, `hughe-leaser`, `hughe-failpoint` to be attached to this VM.
+Requires GitHub integrations named `hughe-sldb`, `hughe-sldbman`, `hughe-sqpy`, `hughe-leaser`, `hughe-failpoint`, `hughe-shelley` to be attached to this VM.
+
+- **shelley** — this repo; stores Shelley's notes and setup log.
 
 ### Repo relationships
 
