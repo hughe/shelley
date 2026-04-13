@@ -39,3 +39,40 @@ Dependency direction is strictly one-way: we never modify a dependency repo to r
 ### Git discipline
 
 - **Always show diffs before committing.** Run `git diff` (or `git diff --cached` for staged changes) and display the output before creating any commit.
+
+## 2025-04-13: Submodule migration and container build fixes
+
+### Git submodules for sldb dependencies
+
+Added `leaser` and `failpoint` as git submodules under `extern/` in the sldb repo:
+```
+git submodule add https://github.com/hughe/leaser extern/leaser
+git submodule add https://github.com/hughe/failpoint extern/failpoint
+```
+
+Changed `rs/Cargo.toml` from git deps to path deps:
+```
+failpoint = { path = "../extern/failpoint", version = "3.0.0" }
+leaser-client = { path = "../extern/leaser/rs/client" }
+```
+
+### Removed SSH requirements from Docker build
+
+- Removed `--ssh default` from all `docker build` commands in the Makefile
+- Removed `--mount=type=ssh` from all `RUN` steps in the Dockerfile
+- Removed `ssh-keyscan github.com` setup from Dockerfile
+- Added `COPY ./extern ./extern` to provide submodule sources in build context
+- Added `DOCKER_BUILD_EXTRA_ARGS` Make variable for environment-specific flags
+
+### VM-specific setup
+
+- Installed Rust 1.94.1 via `rustup install 1.94.1`
+- Disabled IPv6 system-wide (`/etc/sysctl.d/99-disable-ipv6.conf`) to work around Docker networking issues
+- Configured Docker DNS (`/etc/docker/daemon.json`) with `1.1.1.1` and `8.8.8.8`
+- Git URL rewriting for exe.dev integration proxies in `~/.gitconfig`:
+  ```
+  url."https://hughe-leaser.int.exe.xyz/hughe/leaser.git".insteadOf = https://github.com/hughe/leaser
+  url."https://hughe-failpoint.int.exe.xyz/hughe/failpoint.git".insteadOf = https://github.com/hughe/failpoint
+  ```
+- Container build uses `DOCKER_BUILD_EXTRA_ARGS=--network=host` and `BUILD_PLATFORM=linux/amd64`
+- 20G disk is barely enough for the full Docker build — prune build cache after builds
